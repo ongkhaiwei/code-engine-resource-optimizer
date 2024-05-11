@@ -5,6 +5,7 @@ from ibm_code_engine_sdk.code_engine_v2 import *
 from datetime import datetime, timedelta
 
 IBM_API_KEY = os.getenv("IBM_API_KEY","")
+CODE_ENGINE_ENDPOINT = os.getenv("CODE_ENGINE_ENDPOINT", "https://api.jp-tok.codeengine.cloud.ibm.com/v2")
 PROJECT_ID = os.getenv("PROJECT_ID","")
 APPLICATION_NAME = os.getenv("APPLICATION_NAME","").split(",")
 TIMEZONE_OFFSET = int(os.getenv("TIMEZONE_OFFSET",0))
@@ -16,7 +17,7 @@ print(f'Current Time: {current_time}')
 # Initialize the IAM authenticator using an API key
 authenticator = IAMAuthenticator(IBM_API_KEY)
 service = CodeEngineV2(authenticator=authenticator)
-service.set_service_url('https://api.jp-tok.codeengine.cloud.ibm.com/v2')
+service.set_service_url(CODE_ENGINE_ENDPOINT)
 
 all_results = []
 pager = AppsPager(
